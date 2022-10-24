@@ -13,3 +13,29 @@ how to run:
        get-all-order: get all order
        add-cuisine: add a new cuisine; parameters: [name, description]; exp.: add-cuisine Italian Some description
  4. choose command and write
+
+# SQL queries for this task
+![image](https://user-images.githubusercontent.com/85928123/197555766-0ce31cea-81ae-4b36-90c6-96a609fd44b4.png)
+
+1.
+SELECT 
+  Country.* 
+FROM 
+  Country 
+  INNER JOIN City ON Country.CountryID = City.CountryID 
+GROUP BY 
+  City.CountryID 
+HAVING 
+  SUM(City.Population) > 400;
+------------------------------------------------------  
+2.
+SELECT 
+  Country.* 
+FROM 
+  Country 
+  INNER JOIN City ON Country.CountryID = City.CountryID 
+  INNER JOIN Building ON City.CityID = Building.CityID 
+GROUP BY 
+  City.CountryID 
+HAVING 
+  COUNT(Building.BuildingID) = 0;
