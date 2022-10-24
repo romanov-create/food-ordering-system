@@ -27,7 +27,9 @@ GROUP BY
   City.CountryID 
 HAVING 
   SUM(City.Population) > 400;
+  
 //------------------------------------------------------//
+
 2.
 SELECT 
   Country.* 
