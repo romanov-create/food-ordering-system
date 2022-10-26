@@ -32,12 +32,17 @@ HAVING
 
 2.
 SELECT 
-  Country.* 
+  * 
 FROM 
   Country 
-  INNER JOIN City ON Country.CountryID = City.CountryID 
-  INNER JOIN Building ON City.CityID = Building.CityID 
-GROUP BY 
-  City.CountryID 
-HAVING 
-  COUNT(Building.BuildingID) = 0;
+WHERE 
+  name NOT IN (
+    SELECT 
+      Country.name 
+    FROM 
+      Country 
+      INNER JOIN City ON Country.CountryID = City.CountryID 
+      INNER JOIN Building ON City.CityID = Building.CityID 
+    GROUP BY 
+      City.CountryID
+  )
